@@ -1,23 +1,21 @@
 package controllers;
 
 import java.io.IOException;
-import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class Servlet
+ * Servlet implementation class HomeServlet
  */
-public class LoginServlet extends HttpServlet {
+public class HomeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginServlet() {
+    public HomeServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,16 +32,8 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userName = request.getParameter("userName");
-		String password = request.getParameter("passWord");
-		System.out.println("Your login: " +userName + password);
-				
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		out.println("<p>Your name is: ");
-		out.println(userName + " " + password + "</p>");
-		out.close();
-		
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

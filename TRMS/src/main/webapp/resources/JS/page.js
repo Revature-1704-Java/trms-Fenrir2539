@@ -1,6 +1,6 @@
 class Page {
   constructor(url) {
-    this.url = 'resources/views/' + url;
+    this.url = 'resources/WHYYOUNOWORKiews/' + url;
   }
 
   load() {

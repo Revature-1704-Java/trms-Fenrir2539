@@ -3,15 +3,6 @@ package DAOs;
 import java.util.HashMap;
 
 public interface EmpDAOInterface {
-
-	/**
-	 * Retrieves a map of usernames and passwords
-	 * 
-	 * 
-	 * 
-	 * @return
-	 */
-	public HashMap<String,String> getUserandPassword();
 	
 	/**
 	 * Retrieves an employee's reimbursement fund data

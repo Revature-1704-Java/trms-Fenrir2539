@@ -57,10 +57,20 @@ public class LoginServlet extends HttpServlet {
 		String password = request.getParameter("passWord");
 		System.out.println("Your login: " +userName + password);
 		
-		//Try to get usernames
+		//Try to get user names
 		LoginDAO loginDAO = new LoginDAO();
 		HashMap<String, Integer> userPassMap = loginDAO.getUserandPassword();
-				
+		if (userPassMap.containsKey(userName+password)) {
+			//Valid Login... Do stuff
+			
+		}
+		else {
+			//Invalid Login
+			request.getSession().setAttribute("errorMessage", "Invlaid Login");
+			response.sendRedirect(request.getHeader("Referer"));
+		}
+			
+		/*
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		out.println("<p>Your name is: ");
@@ -71,6 +81,7 @@ public class LoginServlet extends HttpServlet {
             out.println("<p>"+key + " " + value+"</p>");
 		} 
 		out.close();
+		*/
 		
 	}
 

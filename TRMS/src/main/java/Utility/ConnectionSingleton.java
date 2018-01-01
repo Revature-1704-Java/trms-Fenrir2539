@@ -1,5 +1,6 @@
 package Utility;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -13,26 +14,27 @@ import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.apache.log4j.Priority;
 
+import oracle.jdbc.OracleDriver;
+
 public class ConnectionSingleton {
 	    private static String db_url;
 	    private static String db_user;
 	    private static String db_password;
 	    private static Statement connection;
+	    
 
 	    private ConnectionSingleton() {
 	    	Properties prop = new Properties(); 
 			InputStream in = null;
 			try {
-				in = new FileInputStream("/TRMS/src/main/resources/connection.properties");
+				in = new FileInputStream("C:/Users/swans/ProjectOne/trms-Fenrir2539/TRMS/src/main/resources/connection.properties");
 			} catch (FileNotFoundException e) {
 				//Logger.getLogger(ConnectionSingleton.class.getName()).log(Level.FATAL, "File does not exist", e);
-				System.out.println("connection.properties not found");
 			}
 			try {
 				prop.load(in);
 			} catch (IOException e) {
 				//Logger.getLogger(ConnectionSingleton.class.getName()).log(Level.FATAL, "Failed to load properties", e);
-				System.out.println("loading properties failed");
 			}
 	    	db_url = prop.getProperty("url");
 	        db_user = prop.getProperty("user");
@@ -43,9 +45,8 @@ public class ConnectionSingleton {
 	    private static Statement setConnection() {
 	        try {
 	            String url = "" + db_url;
-	            System.out.println("connection: "+db_url+db_user+db_password);
+	            DriverManager.registerDriver(new OracleDriver());
 	            java.sql.Connection conn = DriverManager.getConnection(url, db_user, db_password);
-
 	            //Creation of the Statement object
 	            java.sql.Statement state = conn.createStatement();
 	            return (Statement) state;
@@ -70,7 +71,6 @@ public class ConnectionSingleton {
 	            return ConnectionSingletonManagerHolder.instance;
 	        } catch (ExceptionInInitializerError ex) {
 	        	//Logger.getLogger(ConnectionSingleton.class.getName()).log(Level.FATAL, "Failed to get Instance", ex);
-	        	System.out.println("getIstance Failed");
 	        }
 	        return null;
 	    }

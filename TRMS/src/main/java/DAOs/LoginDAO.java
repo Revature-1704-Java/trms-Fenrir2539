@@ -22,8 +22,14 @@ public class LoginDAO {
 		
 		//Creation of the statement instance 
 		ConnectionSingleton single = ConnectionSingleton.getInstance();
+		if (single == null) {
+			System.out.println("null singleton");
+		}
 		Statement state = ConnectionSingleton.getStatement();
 		// put your SQL code in the variable sqlString
+		if (state == null) {
+			System.out.println("null state");
+		}
 		String sqlString = "SELECT * FROM LOGIN" ;
 		try {
 			result = state.executeQuery(sqlString);

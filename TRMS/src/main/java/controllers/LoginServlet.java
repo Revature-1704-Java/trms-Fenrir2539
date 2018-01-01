@@ -1,7 +1,9 @@
 package controllers;
 
 import java.io.IOException;
+import DAOs.LoginDAO;
 import java.io.PrintWriter;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -54,11 +56,20 @@ public class LoginServlet extends HttpServlet {
 		String userName = request.getParameter("userName");
 		String password = request.getParameter("passWord");
 		System.out.println("Your login: " +userName + password);
+		
+		//Try to get usernames
+		LoginDAO loginDAO = new LoginDAO();
+		HashMap<String, Integer> userPassMap = loginDAO.getUserandPassword();
 				
 		response.setContentType("text/html");
 		PrintWriter out = response.getWriter();
 		out.println("<p>Your name is: ");
 		out.println(userName + " " + password + "</p>");
+		for (String name: userPassMap.keySet()){
+            String key =name.toString();
+            String value = userPassMap.get(name).toString();  
+            out.println("<p>"+key + " " + value+"</p>");
+		} 
 		out.close();
 		
 	}

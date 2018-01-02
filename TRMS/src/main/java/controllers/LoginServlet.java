@@ -1,7 +1,6 @@
 package controllers;
 
 import java.io.IOException;
-import DAOs.LoginDAO;
 import java.io.PrintWriter;
 import java.util.HashMap;
 
@@ -10,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import DAOs.LoginDAO;
 
 /**
  * Servlet implementation class Servlet
@@ -66,8 +67,8 @@ public class LoginServlet extends HttpServlet {
 		}
 		else {
 			//Invalid Login
-			request.getSession().setAttribute("errorMessage", "Invlaid Login");
-			response.sendRedirect(request.getHeader("Referer"));
+			request.getSession().setAttribute("errorMessage", "Invalid Login");
+			//response.sendRedirect(request.getHeader("Referer"));
 		}
 			
 		/*

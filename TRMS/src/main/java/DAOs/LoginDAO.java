@@ -35,9 +35,9 @@ public class LoginDAO {
 				userPassMap.put(userName+pass, id);
 			}
 			result.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} 
+		catch (SQLException e) {
+			System.out.println("SQLException occured: "+e);
 		}
 		
 

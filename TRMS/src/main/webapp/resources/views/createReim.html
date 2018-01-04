@@ -11,75 +11,67 @@
 	</head>
 	<body>
 		<h2>Create A Reimbursement</h2>
-		<form action="create.do" method="POST">
-		<div class="container">
-		    	<label>Date of Event</label>
-		    	<input type="text" placeholder="DD-MM-YYYY" name="eventDate" required>
-		  	
-		  	<button type="submit" value="Submit">Submit Reimbursement</button>
-		 </div>
-			<!--
+		<form action="../../create.do" method="POST">			
 			<div class="form-group">
 		    	<label for="eventDate">Date of Event</label>
-		    	<input type="text" placeholder="DD-MM-YYYY" class="form-control" id="eventDate" required>
+		    	<input type="text" placeholder="DD-MM-YYYY" class="form-control" name="eventDate" required>
 		  	</div>
 		  	<hr></hr>
 		  	<div class ="form-group">
 		  		
 		    	<label class="radio-inline">University Course</label>
-		    	<input type="radio" value="course" id="event">
+		    	<input type="radio" value="1" name="event">
 				<label class="radio-inline">Seminar</label>
-				<input type="radio" value="seminar" id="event">
-				<label class="radio-inline">Certification Prep Class</label>
-				<input type="radio" value="certPrep" id="event">
-				<label class="radio-inline">Certification</label>
-				<input type="radio" value="cert" id="event">
+				<input type="radio" value="2" name="event">
+				<label class="radio-inline">Certification Preparation Class</label>
+				<input type="radio" value="3" name="event">
+				<label class="radio-inline">Certificate</label>
+				<input type="radio" value="4" name="event">
 				<label class="radio-inline">Technical Training</label>
-				<input type="radio" value="tech" id="event">
+				<input type="radio" value="5" name="event">
 				<label class="radio-inline">Other</label>
-				<input type="radio" value="other" id="event">
+				<input type="radio" value="6" name="event">
 		  	</div>
 		  	<hr></hr>
 		  	<div class ="form-group">
 		  		
-		    	<label class="radio-inline">Percentage</label>
-		    	<input type="radio" value="percent" id="grade">
-				<label class="radio-inline">Letter</label>
-				<input type="radio" value="letter" id="grade">
+		    	<label class="radio-inline">A --> F</label>
+		    	<input type="radio" value="1" name="grade">
+				<label class="radio-inline">100 --> 0</label>
+				<input type="radio" value="2" name="grade">
 				<label class="radio-inline">Pass/Fail</label>
-				<input type="radio" value="passFail" id="grade">
+				<input type="radio" value="3" name="grade">
 				<label class="radio-inline">Other</label>
-				<input type="radio" value="otherGrade" id="grade">
+				<input type="radio" value="4" name="grade">
 		  	</div>
 		  	<hr></hr>
 		  	<div class="form-group">
 		    	<label for="passGrade">Grade Needed for Completion</label>
-		    	<input type="text" placeholder="A, 80%, Pass, etc." class="form-control" id="passGrade">
+		    	<input type="text" placeholder="A, 80%, Pass, etc." class="form-control" name="passGrade">
 		  	</div>
 		  	<div class="form-group">
 		    	<label for="empCost">Out of Pocket Expense</label>
-		    	<input type="text" class="form-control" id="empCost">
+		    	<input type="text" class="form-control" name="empCost">
 		  	</div>	
 			<div class="form-group">
 		    	<label for="location">Location</label>
-		    	<input type="text" class="form-control" id="location">
+		    	<input type="text" class="form-control" name="location">
 		  	</div>
 		  	<div class="form-group">
 		    	<label for="description">Description</label>
-		    	<input type="text" class="form-control" id="description">
+		    	<input type="text" class="form-control" name="description">
 		  	</div>
 		  	<div class="form-group">
 		    	<label for="workHours">Expected hours of work missed</label>
-		    	<input type="text" class="form-control" id="workHours">
+		    	<input type="text" class="form-control" name="workHours">
 		  	</div>
 		  	<div class="form-group">
 		  		<label for="just">Justification:</label>
-		  		<textarea class="form-control" rows="5" id="just"></textarea>
+		  		<textarea class="form-control" rows="5" name="just"></textarea>
 			</div>	
 			<hr></hr>
 		  	<button type="submit" value="Submit">Submit Reimbursement</button>
-		  	-->
-	</form>
+		</form>
 	</body>
 </html>
 

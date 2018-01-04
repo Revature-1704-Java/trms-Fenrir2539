@@ -3,36 +3,33 @@ package DAOs;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 import Utility.ConnectionSingleton;
+import beans.Event;
 
-public class LoginDAO {
+public class EventDAO {
 	
-	/**
-	 * Retrieves a map of user names and passwords
-	 * user name is the key to the value password
-	 * 
-	 * 
-	 * @return
-	 */
-	public HashMap<String, Integer> getUserandPassword() {
-		HashMap<String, Integer> userPassMap = new HashMap<String, Integer>();
+	public List<Event> getAllEvents() {
+		List<Event> events = new ArrayList<>();
 		ResultSet result;
 		
 		//Creation of the statement instance 
 		ConnectionSingleton single = ConnectionSingleton.getInstance();
 		Statement state = ConnectionSingleton.getStatement();
 		// put your SQL code in the variable sqlString
-		String sqlString = "SELECT * FROM LOGIN" ;
+		String sqlString = "SELECT * FROM EVENT" ;
 		try {
 			result = state.executeQuery(sqlString);
 			while (result.next()) {
-				int id = result.getInt("EMPLOYEEID");
-				String userName =  result.getString("USERNAME");
-				String pass =  result.getString("PWORD");
+				int id = result.getInt("EVENTID");
+				String type =  result.getString("EVENT_TYPE");
+				int reimPercent =  result.getInt("REIM_PERCENT");
 				
-				userPassMap.put(userName+pass, id);
+				Event e = new Event(id, type, reimPercent);
+				
+				events.add(e);
 			}
 			result.close();
 		} 
@@ -40,6 +37,7 @@ public class LoginDAO {
 			System.out.println("SQLException occured: "+e);
 		}
 		
-		return userPassMap;
+		return events;
 	}
+
 }

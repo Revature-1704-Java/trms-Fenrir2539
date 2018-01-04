@@ -17,7 +17,6 @@ import DAOs.LoginDAO;
 /**
  * Servlet implementation class Servlet
  */
-@WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -33,14 +32,10 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		if(request.getSession().getAttribute("employee") != null) {
-			response.sendRedirect("dashboard");
-		}else {
-			RequestDispatcher rd = request.getRequestDispatcher("views/login.jsp");
-			rd.forward(request, response);
+		HttpSession session = request.getSession();
+		if (session.getAttribute("errorMessage") != null) {
+			//Wrong login
 		}
-		
 		/*
 		HttpSession session = request.getSession();
 		//Dao to get usernames/pass
@@ -60,27 +55,27 @@ public class LoginServlet extends HttpServlet {
 		}
 		*/
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userName = request.getParameter("userName");
 		String password = request.getParameter("passWord");
-		System.out.println("Your login: " +userName + password);
+		HttpSession session = request.getSession();
 		
 		//Try to get user names
 		LoginDAO loginDAO = new LoginDAO();
 		HashMap<String, Integer> userPassMap = loginDAO.getUserandPassword();
 		if (userPassMap.containsKey(userName+password)) {
 			//Valid Login... Do stuff
+			int eid = userPassMap.get(userName+password);
+			session.setAttribute("eid", eid);
+			System.out.println("Your login: " +userName + password);
+			System.out.println("Your eid: " +eid);
 			response.sendRedirect("resources/views/createReim.html");
 			
 		}
 		else {
 			//Invalid Login
 			request.getSession().setAttribute("errorMessage", "Invalid Login");
-			//response.sendRedirect(request.getHeader("Referer"));
 			response.sendRedirect("index.html");
 		}
 			

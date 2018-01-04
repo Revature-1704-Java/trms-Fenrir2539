@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +17,7 @@ import DAOs.LoginDAO;
 /**
  * Servlet implementation class Servlet
  */
+@WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -31,6 +34,14 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		if(request.getSession().getAttribute("employee") != null) {
+			response.sendRedirect("dashboard");
+		}else {
+			RequestDispatcher rd = request.getRequestDispatcher("views/login.jsp");
+			rd.forward(request, response);
+		}
+		
+		/*
 		HttpSession session = request.getSession();
 		//Dao to get usernames/pass
 		String username = request.getParameter("userName");
@@ -63,12 +74,14 @@ public class LoginServlet extends HttpServlet {
 		HashMap<String, Integer> userPassMap = loginDAO.getUserandPassword();
 		if (userPassMap.containsKey(userName+password)) {
 			//Valid Login... Do stuff
+			response.sendRedirect("resources/views/createReim.html");
 			
 		}
 		else {
 			//Invalid Login
 			request.getSession().setAttribute("errorMessage", "Invalid Login");
 			//response.sendRedirect(request.getHeader("Referer"));
+			response.sendRedirect("index.html");
 		}
 			
 		/*

@@ -1,38 +1,78 @@
-<h2>Create A Reimbursement</h2>
-<form action="create.do" method="POST">
-	<div class="form-group">
-    	<label for="eventDate">Event Date</label>
-    	<input type="date" class="form-control" id="eventDate">
-  	</div>
-  	<div class ="form-group">
-  		<!-- Event Types -->
-    	<label class="radio-inline">University Course</label>
-    	<input type="radio" name="course">
-		<label class="radio-inline">Seminar</label>
-		<input type="radio" name="seminar">
-		<label class="radio-inline">Certification Prep Class</label>
-		<input type="radio" name="certPrep">
-		<label class="radio-inline">Certification</label>
-		<input type="radio" name="cert">
-		<label class="radio-inline">Technical Training</label>
-		<input type="radio" name="tech">
-		<label class="radio-inline">Other</label>
-		<input type="radio" name="other">
-  	</div>
-  	<div class ="form-group">
-  		<!-- Grade Types -->
-    	<label class="radio-inline">Percentage</label>
-    	<input type="radio" name="percent">
-		<label class="radio-inline">Letter</label>
-		<input type="radio" name="letter">
-		<label class="radio-inline">Pass/Fail</label>
-		<input type="radio" name="passFail">
-		<label class="radio-inline"><b>Other</b></label>
-		<input type="radio" name="otherGrade">
-  	</div>  	
-  	<div class="form-group">
-  		<label for="comment">Comment:</label>
-  		<textarea class="form-control" rows="5" id="comment"></textarea>
-	</div>
-  	<button type="submit" class="btn btn-default">Submit</button>
-</form>
+<html>
+<head>
+	<link rel="stylesheet" 
+    	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" 
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
+        crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="resources/CSS/index.css"/>
+    <title>Tuition reimbursement system</title>
+	</head>
+	<body>
+		<h2>Create A Reimbursement</h2>
+		<form action="create.do" method="POST">
+		<div class="form-group">
+	    	<label for="eventDate">Date of Event</label>
+	    	<input type="text" placeholder="DD-MM-YYYY" class="form-control" id="eventDate" required>
+	  	</div>
+	  	<hr></hr>
+	  	<div class ="form-group">
+	  		<!-- Event Types -->
+	    	<label class="radio-inline">University Course</label>
+	    	<input type="radio" value="course" id="event">
+			<label class="radio-inline">Seminar</label>
+			<input type="radio" value="seminar" id="event">
+			<label class="radio-inline">Certification Prep Class</label>
+			<input type="radio" value="certPrep" id="event">
+			<label class="radio-inline">Certification</label>
+			<input type="radio" value="cert" id="event">
+			<label class="radio-inline">Technical Training</label>
+			<input type="radio" value="tech" id="event">
+			<label class="radio-inline">Other</label>
+			<input type="radio" value="other" id="event">
+	  	</div>
+	  	<hr></hr>
+	  	<div class ="form-group">
+	  		<!-- Grade Types -->
+	    	<label class="radio-inline">Percentage</label>
+	    	<input type="radio" value="percent" id="grade">
+			<label class="radio-inline">Letter</label>
+			<input type="radio" value="letter" id="grade">
+			<label class="radio-inline">Pass/Fail</label>
+			<input type="radio" value="passFail" id="grade">
+			<label class="radio-inline">Other</label>
+			<input type="radio" value="otherGrade" id="grade">
+	  	</div>
+	  	<hr></hr>
+	  	<div class="form-group">
+	    	<label for="passGrade">Grade Needed for Completion</label>
+	    	<input type="text" placeholder="A, 80%, Pass, etc." class="form-control" id="passGrade">
+	  	</div>
+	  	<div class="form-group">
+	    	<label for="empCost">Out of Pocket Expense</label>
+	    	<input type="text" class="form-control" id="empCost">
+	  	</div>	
+		<div class="form-group">
+	    	<label for="location">Location</label>
+	    	<input type="text" class="form-control" id="location">
+	  	</div>
+	  	<div class="form-group">
+	    	<label for="description">Description</label>
+	    	<input type="text" class="form-control" id="description">
+	  	</div>
+	  	<div class="form-group">
+	    	<label for="workHours">Expected hours of work missed</label>
+	    	<input type="text" class="form-control" id="workHours">
+	  	</div>
+	  	<div class="form-group">
+	  		<label for="just">Justification:</label>
+	  		<textarea class="form-control" rows="5" id="just"></textarea>
+		</div>	
+		<hr></hr>
+	  	<button type="submit" class="btn btn-default">Submit</button>
+	</form>
+	</body>
+</html>
+

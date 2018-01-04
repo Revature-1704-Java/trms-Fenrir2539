@@ -12,11 +12,31 @@
 	</head>
 	
 	<body>
+		<h2>Login Form</h2>
+		<form action="login.do" method="POST">
+  			<div class="imgcontainer">
+    			<img src="resources/face.png" alt="Avatar" class="avatar">
+  			</div>
+
+  			<div class="container">
+    			<label><b>Username</b></label>
+    			<input type="text" placeholder="Enter Username" name="userName" required>
+
+    			<label><b>Password</b></label>
+	    		<input type="password" placeholder="Enter Password" name="passWord" required>
+	        
+    			<button type="submit" value="Submit">Login</button>
+  			</div>
+		</form>
+	</body>
+	<!--  
+	<body>
 		<main></main>
 	</body>
 
 	<script src='resources/js/router.js'></script>
-	<script src="resources/js/page.js"></script>
-	<script src="resources/js/layout.js"></script>
+	<script src='resources/js/page.js'></script>
+	<script src='resources/js/layout.js'></script>
 	<script src='resources/js/main.js'></script>
+	-->
 </html>

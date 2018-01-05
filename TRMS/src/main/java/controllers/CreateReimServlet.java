@@ -84,7 +84,8 @@ public class CreateReimServlet extends HttpServlet {
 			//insert Reim
 			Reimbursement newReim = new Reimbursement(1 , eid, eventDate, eventType, gradeType, passGrade, 
 					empCost, reimAmount, location, description, Double.parseDouble(workHours), just);
-			
+			ReimDAO reimDAO = new ReimDAO();
+			reimDAO.insertReimbursement(newReim);
 			//Move to reim Display
 			
 		}

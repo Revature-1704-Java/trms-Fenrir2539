@@ -77,6 +77,9 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("eid", eid);
 			System.out.println("Your login: " +userName + password);
 			System.out.println("Your eid: " +eid);
+			//Check to see if employee is a manager
+			//grab reports to column into a Set, see if eid exists
+			
 			response.sendRedirect("resources/views/createReim.html");
 			
 		}

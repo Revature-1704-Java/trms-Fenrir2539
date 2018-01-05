@@ -4,7 +4,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import Utility.ConnectionSingleton;
 import beans.Employee;
@@ -106,5 +108,54 @@ public class EmpDAO {
 			System.out.println("SQLException occured: "+e);
 		}
 		return employees;
+	}
+	
+	public Set<Integer> findManagers() {
+		ResultSet result;
+		Set<Integer> managers = new HashSet<>();
+		//Get Connection
+		ConnectionSingleton single = ConnectionSingleton.getInstance();
+		Statement state = ConnectionSingleton.getStatement();
+		//Make Query
+		String sqlString = "SELECT REPORTSTO FROM EMPLOYEE";
+		try {
+			result = state.executeQuery(sqlString);
+			while (result.next()) {
+				int reportsTo = result.getInt("REPORTSTO");
+				managers.add(reportsTo);
+			}
+			result.close();
+		} 
+		catch (SQLException e) {
+			System.out.println("SQLException occured: "+e);
+		}
+		
+		return managers;
+	}
+	
+	public Set<Integer> findManagedEmps(int id) {
+		ResultSet result;
+		Set<Integer> managedEmps = new HashSet<>();
+		//Get Connection
+		ConnectionSingleton single = ConnectionSingleton.getInstance();
+		Statement state = ConnectionSingleton.getStatement();
+		//Make Query
+		String sqlString = "SELECT EMPLOYEEID, REPORTSTO FROM EMPLOYEE";
+		try {
+			result = state.executeQuery(sqlString);
+			while (result.next()) {
+				int eid = result.getInt("EMPLOYEEID");
+				int reportsTo = result.getInt("REPORTSTO");
+				if (reportsTo == id) {
+					managedEmps.add(eid);
+				}
+			}
+			result.close();
+		} 
+		catch (SQLException e) {
+			System.out.println("SQLException occured: "+e);
+		}
+		
+		return managedEmps;
 	}
 }

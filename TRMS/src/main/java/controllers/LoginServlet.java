@@ -12,6 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
 import DAOs.LoginDAO;
 
 /**
@@ -19,6 +23,8 @@ import DAOs.LoginDAO;
  */
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final Logger logger = LogManager.getLogger("LoginServlet");
+	
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -77,7 +83,10 @@ public class LoginServlet extends HttpServlet {
 		else {
 			//Invalid Login
 			request.getSession().setAttribute("errorMessage", "Invalid Login");
+			BasicConfigurator.configure();
+			logger.info("Invalid login");
 			response.sendRedirect("index.html");
+			response.setContentType("text/html");
 		}
 			
 		/*

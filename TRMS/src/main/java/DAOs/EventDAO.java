@@ -4,15 +4,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import Utility.ConnectionSingleton;
 import beans.Event;
 
 public class EventDAO {
 	
-	public List<Event> getAllEvents() {
-		List<Event> events = new ArrayList<>();
+	public Map<Integer, Integer> getAllEvents() {
+		Map<Integer, Integer> events = new HashMap<>();
 		ResultSet result;
 		
 		//Creation of the statement instance 
@@ -27,9 +29,7 @@ public class EventDAO {
 				String type =  result.getString("EVENT_TYPE");
 				int reimPercent =  result.getInt("REIM_PERCENT");
 				
-				Event e = new Event(id, type, reimPercent);
-				
-				events.add(e);
+				events.put(id, reimPercent);
 			}
 			result.close();
 		} 

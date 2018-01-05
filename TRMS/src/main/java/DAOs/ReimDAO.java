@@ -1,9 +1,13 @@
 package DAOs;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import Utility.ConnectionSingleton;
@@ -44,5 +48,55 @@ public class ReimDAO {
 			System.out.println("SQLException occured: "+e);
 		}
 		return reimbursements;
+	}
+	
+	public boolean insertReimbursement(Reimbursement r) {
+		PreparedStatement ps = null;
+		int result;
+		Reimbursement reimbursement = null;
+		boolean insertWorked = false;
+		ConnectionSingleton single = ConnectionSingleton.getInstance();
+		Statement state = ConnectionSingleton.getStatement();
+		//Make Query
+		String sqlString = "INSERT INTO REIMBURSEMENT VALUES(";
+		try {
+			sqlString += r.getReimId() +", ";
+			sqlString += r.getEmpId() +", ";
+			//date
+			String dateStr = r.getEventDate();
+			java.util.Date date = new Date();
+			 String expectedPattern = "MM/dd/yyyy";
+			    SimpleDateFormat formatter = new SimpleDateFormat(expectedPattern);
+			    try
+			    {
+			      date = formatter.parse(dateStr);
+			    }
+			    catch (ParseException e)
+			    {
+			      e.printStackTrace();
+			    }
+			java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+			
+			sqlString += sqlDate +", ";
+			sqlString += r.getEventId() +", ";
+			sqlString += r.getGradeId() +", ";
+			sqlString += r.getPassingGrade() +", ";
+			sqlString += r.getEmpCost() +", ";
+			sqlString += r.getReimAmount() +", ";
+			sqlString += r.getLocation() +", ";
+			sqlString += r.getDescription() +", ";
+			sqlString += r.getWorkHoursMissed() +", ";
+			sqlString += r.getStatus() +")";
+			result = state.executeUpdate(sqlString);
+			
+			if (result != 0) {
+				System.out.println("Reimbursement submitted");
+	            insertWorked = true;
+			}
+		}
+		catch (Exception ex) {
+			System.out.println(ex.getMessage());
+		}
+		return insertWorked;
 	}
 }

@@ -10,11 +10,23 @@
     <title>Tuition reimbursement system</title>
 	</head>
 	<body>
+		<nav class="navbar navbar-inverse">
+		  <div class="container-fluid">
+		    <div class="navbar-header">
+		      <a class="navbar-brand" href="#">Swanson's Software</a>
+		    </div>
+		    <ul class="nav navbar-nav">
+		      <li class="active"><a href="reimbursements.html">View Reimbursements</a></li>
+		      <li><a href="createReim.html">Create Reimbursement</a></li>
+		    </ul>
+		    <button class="btn btn-danger navbar-btn">Logout</button>
+		  </div>
+		</nav>
 		<h2>Create A Reimbursement</h2>
 		<form action="../../create.do" method="POST">			
 			<div class="form-group">
 		    	<label for="eventDate">Date of Event</label>
-		    	<input type="text" placeholder="DD-MM-YYYY" class="form-control" name="eventDate" required>
+		    	<input type="text" placeholder="MM/DD/YYYY" class="form-control" name="eventDate" required>
 		  	</div>
 		  	<hr></hr>
 		  	<div class ="form-group">
